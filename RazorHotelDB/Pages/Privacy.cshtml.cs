@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace RazorHotel24InClass.Pages
+namespace RazorHotelDB.Pages
 {
     public class PrivacyModel : PageModel
     {

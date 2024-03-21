@@ -1,9 +1,9 @@
+using RazorHotelDB.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using RazorHotel24InClass.Interfaces;
-using RazorHotel24InClass.Models;
+using RazorHotelDB.Interfaces;
 
-namespace RazorHotel24InClass.Pages.Hotels
+namespace RazorHotelDB.Pages.Hotels
 {
     public class GetAllHotelsModel : PageModel
     {

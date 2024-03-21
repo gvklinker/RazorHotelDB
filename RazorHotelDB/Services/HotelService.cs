@@ -1,6 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
-using RazorHotel24InClass.Interfaces;
-using RazorHotel24InClass.Models;
+﻿using RazorHotelDB.Models;
+using Microsoft.Data.SqlClient;
+using RazorHotelDB.Interfaces;
 using System.Data;
 
 namespace RazorHotelDB.Services

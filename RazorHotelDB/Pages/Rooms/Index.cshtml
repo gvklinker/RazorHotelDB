@@ -1,0 +1,54 @@
+﻿@page
+@using RazorHotelDB.Models
+@model RazorHotelDB.Pages.Rooms.IndexModel
+@{
+    ViewData["Title"] = "Index of rooms";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                RoomNr
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Pris
+            </th>
+            <th>
+                Hotel nr
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model.Rooms.Count() != 0)
+        {
+            @foreach (var item in Model.Rooms)
+            {
+                <tr>
+                    <td>
+                        @item.RoomNr
+                    </td>
+                    <td>
+                        @item.Types
+                    </td>
+                    <td>
+                        @item.Pris
+                    </td>
+                    <td>
+                        @item.HotelNr
+                    </td>
+
+
+                    <td>
+                        <a asp-page="Edit" asp-route-rid="@item.RoomNr" asp-route-hid="@item.HotelNr">Edit</a>|
+                        <a asp-page="Delete" asp-route-rid="@item.RoomNr" asp-route-hid="@item.HotelNr">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

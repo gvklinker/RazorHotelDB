@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using RazorHotel24InClass.Interfaces;
-using RazorHotel24InClass.Models;
+using RazorHotelDB.Interfaces;
+using RazorHotelDB.Models;
 
-namespace RazorHotel24InClass.Pages
+namespace RazorHotelDB.Pages
 {
     public class IndexModel : PageModel
     {

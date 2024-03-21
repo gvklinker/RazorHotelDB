@@ -1,6 +1,6 @@
-﻿using RazorHotel24InClass.Models;
+﻿using RazorHotelDB.Models;
 
-namespace RazorHotel24InClass.Interfaces
+namespace RazorHotelDB.Interfaces
 {
     public interface IHotelService
     {

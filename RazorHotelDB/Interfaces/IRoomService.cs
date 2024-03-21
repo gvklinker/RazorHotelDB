@@ -1,11 +1,11 @@
-﻿using HotelDB24ConsoleStart.Models;
+﻿using RazorHotelDB.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelDB24ConsoleStart.Interfaces
+namespace RazorHotelDB.Interfaces
 {
     public interface IRoomService
     {

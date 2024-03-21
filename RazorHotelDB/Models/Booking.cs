@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HotelDB24ConsoleStart.Models
+namespace RazorHotelDB.Models
 {
     public class Booking
     {
