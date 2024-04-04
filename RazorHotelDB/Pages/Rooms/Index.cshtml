@@ -44,8 +44,8 @@
 
 
                     <td>
-                        <a asp-page="Edit" asp-route-rid="@item.RoomNr" asp-route-hid="@item.HotelNr">Edit</a>|
-                        <a asp-page="Delete" asp-route-rid="@item.RoomNr" asp-route-hid="@item.HotelNr">Delete</a>
+                        <a asp-page="UpdateRoom" asp-route-roomnr="@item.RoomNr" asp-route-hotelnr="@item.HotelNr">Update</a>|
+                        <a asp-page="DeleteRoom" asp-route-roomnr="@item.RoomNr" asp-route-hotelnr="@item.HotelNr">Delete</a>
                     </td>
                 </tr>
             }

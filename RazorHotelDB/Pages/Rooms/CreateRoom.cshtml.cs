@@ -9,7 +9,7 @@ namespace RazorHotelDB.Pages.Rooms
     {
         private IRoomService _serv;
         [BindProperty]
-        int HotelNr { get; set; }
+        public int HotelNr { get; set; }
         [BindProperty]
         public Room Room { get; set; }
         [BindProperty]
@@ -25,14 +25,16 @@ namespace RazorHotelDB.Pages.Rooms
             _serv = rServ;
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPost(int hotelnr)
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
-            _serv.CreateRoom(HotelNr, Room);
-            return RedirectToPage("GetAllHotels");
+            Room.HotelNr = hotelnr;
+            Room.Types = TheRoomType.ToString()[0];
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
+            _serv.CreateRoom(hotelnr, Room);
+            return RedirectToPage("Index");
         }
     }
 }

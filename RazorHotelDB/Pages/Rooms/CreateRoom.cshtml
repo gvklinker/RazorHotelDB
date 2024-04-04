@@ -5,11 +5,7 @@
     ViewData["Title"] = "Create Hotel";
 }
 <form method="post">
-    <div class="form-group">
-        <label asp-for="@Model.Room.HotelNr" class="control-label"></label>
-        <input readonly asp-for="@Model.Room.HotelNr" class="form-control" />
-        <span asp-validation-for="Room.HotelNr" class="text-danger"></span>
-    </div>
+    <input type="hidden" asp-for="@Model.Room.HotelNr" />
     <div class="form-group">
         <label asp-for="@Model.Room.RoomNr" class="control-label"></label>
         <input asp-for="@Model.Room.RoomNr" class="form-control" />
@@ -26,7 +22,7 @@
         <span asp-validation-for="Room.Pris" class=" text-danger"></span>
     </div>
     <div>
-        <input type="submit" value="Create a room" class="btn btn-primary" />
+        <input type="submit" value="Create a room" asp-route-hotelnr="@Model.HotelNr" class="btn btn-primary" />
     </div>
 
 </form>

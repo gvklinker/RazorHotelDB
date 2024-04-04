@@ -1,0 +1,28 @@
+﻿@page
+@using RazorHotelDB.Models
+@model RazorHotelDB.Pages.Rooms.UpdateRoomModel
+@{
+    ViewData["Title"] = "Update Room";
+}
+<form method="post">
+    <input type="hidden" asp-for="@Model.RoomToUpdate.HotelNr" />
+    <div class="form-group">
+        <label asp-for="@Model.RoomToUpdate.RoomNr" class="control-label"></label>
+        <input asp-for="@Model.RoomToUpdate.RoomNr" class="form-control" />
+        <span asp-validation-for="RoomToUpdate.RoomNr" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.RoomToUpdate.Types" class="control-label"></label>
+        <select asp-for="@Model.TheRoomType" asp-items="Html.GetEnumSelectList<RoomType>()" class="form-control">
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.RoomToUpdate.Pris" class="control-label"></label>
+        <input asp-for="@Model.RoomToUpdate.Pris class=" form-control" />
+        <span asp-validation-for="RoomToUpdate.Pris" class=" text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Update" asp-route-roomnr="@Model.RoomToUpdate.RoomNr" asp-route-hotelnr="@Model.RoomToUpdate.HotelNr" asp-page-handler="Update" class="btn btn-primary" />
+    </div>
+</form>

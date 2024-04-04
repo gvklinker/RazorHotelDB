@@ -18,7 +18,7 @@ namespace RazorHotelDB.Services
         private String insertSql = "insert into Room Values (@ID, @HNo, @RType, @RPrice)";
         private String deleteSql = "delete from Room where Hotel_No = @HNo AND Room_No = @ID";
         private String updateSql = "update Room " +
-                                   "set Room_No= @RoomID, Types=@RType, Price=@RPris " +
+                                   "set Room_No= @RoomID, Types=@RType, Price=@RPrice " +
                                    "where Hotel_No = @HNo AND Room_No = @ID";
         public bool CreateRoom(int hotelNr, Room room)
         {
@@ -45,7 +45,18 @@ namespace RazorHotelDB.Services
 
         public Room DeleteRoom(int roomNr, int hotelNr)
         {
-            throw new NotImplementedException();
+            Room room = GetRoomFromId(roomNr, hotelNr);
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(deleteSql, connection))
+                {
+                    command.Parameters.AddWithValue("@ID", roomNr);
+                    command.Parameters.AddWithValue("@HNo", hotelNr);
+                    command.Connection.Open();
+                    command.ExecuteNonQuery();
+                }
+            }
+            return room;
         }
 
         public List<Room> GetAllRoom(int hotelNr)
@@ -87,12 +98,63 @@ namespace RazorHotelDB.Services
 
         public Room GetRoomFromId(int roomNr, int hotelNr)
         {
-            throw new NotImplementedException();
+             using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    SqlCommand commmand = new SqlCommand(queryStringFromID, connection);
+                    commmand.Parameters.AddWithValue("@HNo", hotelNr);
+                    commmand.Parameters.AddWithValue("@ID", roomNr);
+                    commmand.Connection.Open();
+
+                    SqlDataReader reader = commmand.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        string type = reader.GetString("Types");
+                        double price = reader.GetDouble("Price");
+                        Room room = new Room(roomNr, type[0], price, hotelNr);
+                        return room;
+                    }
+                }
+                catch (SqlException sqlEx)
+                {
+                    Console.WriteLine("Database error " + sqlEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Generel fejl " + ex.Message);
+                }
+                finally
+                {
+                    //her kommer man altid
+                }
+            }
+            return null;
         }
 
         public bool UpdateRoom(Room room, int roomNr, int hotelNr)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(updateSql, connection))
+                {
+                    command.Parameters.AddWithValue("@RoomID", room.RoomNr);
+                    command.Parameters.AddWithValue("@RType", room.Types);
+                    command.Parameters.AddWithValue("@RPrice", room.Pris);
+                    command.Parameters.AddWithValue("@ID", roomNr);
+                    command.Parameters.AddWithValue("@HNo", room.HotelNr);
+
+                    command.Connection.Open();
+
+                    int noOfRows = command.ExecuteNonQuery();
+                    if (noOfRows == 1)
+                    {
+                        return true;
+                    }
+
+                    return false;
+                }
+            }
         }
     }
 }
